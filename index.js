@@ -23,7 +23,7 @@ const begin = function () {
     ]).then((ans) => {
         if (ans.start) {
             wordSelect = words[Math.floor(Math.random() * words.length)];
-            currentWord = new Word(wordSelect.toUpperCase());
+            console.log(wordSelect);
             start();
         } else {
             begin();
@@ -32,20 +32,43 @@ const begin = function () {
 }//close begin
 
 const start = function () {
-    // currentWord = new Word(wordSelect.toUpperCase());
+    currentWord = new Word(wordSelect.toUpperCase());
+    
+    console.log(currentWord);
+    inquirer.prompt(
     [{
         name: 'guess',
-        message: 'Guess a letter',
+        message: '\nGuess a letter',
         type: 'input',
         validate: function(guessed) {
-            guessed.toUpperCase();
-            if (guessed.match(/^([A-Z])/)) {
+            if (guessed.match(/^([a-zA-Z-]){1}$/)) {
+                gameplay(currentWord, guessed);
                 return;
             } else {
                 return 'Please enter a valid letter';
             }
         }
-    }]
+    }])
 }//close start
+
+
+
+const gameplay = function (currentWord, guessed) {
+    console.log(`\n${guessed} guessed`);
+    currentWord.check(guessed.toUpperCase());
+    currentWord.visible(guessed);
+    console.log(currentWord.visible);
+    let unfinished = currentWord.visible();
+    console.log(unfinished);
+    if (unfinished.includes(guessed)){
+        console.log(`\n Correct! \n`);
+    } else {
+        console.log(`\n Incorrect! \n`);
+    }
+
+    // currentWord.characters.forEach(i => {
+    //     if (guessed === i.)
+    // })
+}
 
 begin();
