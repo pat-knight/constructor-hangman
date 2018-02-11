@@ -1,19 +1,21 @@
-var letter = require('letter.js');
+const letter = require('letter.js');
 
 function Word(word) {
-    this.word = word;
     this.characters = [];
-    // this.solved = false;
-    this.letters = function () {
-        for (var i = 0; i < word.length; i++){
-            this.characters.push(new letter(this.word[i]));
-        }
+    for (var letter of word) {//add each letter to array characters
+        this.characters.push(new Letter(letter));
     }
-    this.check = function (input) {
-        //check
+    this.visible = function (){//word displayed
+        let charArr = this.characters.map(function(letter) {
+            letter.show().join(' ');
+        });
+        return charArr;
     }
-}
+    this.check = function(char){
+        this.characters.forEach(x => {x.compare(char)})
+        this.visible();
+    }
+};//close Word
 
-module.exports = {
-    Word: Word
-}
+
+module.exports = Word;

@@ -3,21 +3,20 @@ function Letter(char) {
     this.guessed = false;
 }
 
-Letter.prototype.compare = function (char){
-    if(this.char === char){
+Letter.prototype.compare = function (char) {
+    if (this.char === char) {
         this.guessed = true;
     }
-}//close compare 
+} //close compare 
 
-Letter.prototype.show = function(){//which character user sees
-    if(this.char === ' ' || this.char === '.' || this.char === '-' || this.char === "'"){
+Letter.prototype.show = function () { //which character user sees
+    if (this.char === ' ' || this.char === '.' || this.char === '-' || this.char === "'") {
         return this.char;
     } else if (this.guessed) {
         return this.char;
     } else {
         return '_'
     }
-};//close show
+}; //close show
 
 module.exports = Letter;
-
