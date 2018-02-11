@@ -1,4 +1,4 @@
-const letter = require('letter.js');
+const letter = require('./letter.js');
 
 function Word(word) {
     this.characters = [];
