@@ -1,25 +1,23 @@
-// dependency for inquirer npm package
-const input = process.argv[2];
-//letter constructor
+function Letter(char) {
+    this.char = char;
+    this.guessed = false;
+}
 
-function Letter(input) {
-    this.character = input;
-    this.guessed = guessed;
-    this.display = function () {
-        if (!this.guessed) {
-            return '_';
-        } else {
-            return this.character;
-        }
-        this.compare = function (input) {
-            if (this.character === input) {
-                this.guessed = true;
-            }
-        }
+Letter.prototype.compare = function (char){
+    if(this.char === char){
+        this.guessed = true;
     }
-} // close Letter constructor
+}//close compare 
 
-module.exports = {
-    Letter:Letter
-};
+Letter.prototype.show = function(){//which character user sees
+    if(this.char === ' ' || this.char === '.' || this.char === '-' || this.char === "'"){
+        return this.char;
+    } else if (this.guessed) {
+        return this.char;
+    } else {
+        return '_'
+    }
+};//close show
+
+module.exports = Letter;
 
