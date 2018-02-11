@@ -2,7 +2,7 @@
 var inquirer = require("inquirer");
 
 //externals
-const word = require("./word.js");
+const Word = require("./word.js");
 
 let words = ["Marty McFly", "Dr. Emmett Brown", "Marvin Berry", "Biff Tannen", "Jennifer",
     "Great Scott!", "This is heavy", "What are you looking at butthead", "I hate manure!",
@@ -23,15 +23,16 @@ const begin = function () {
     ]).then((ans) => {
         if (ans.start) {
             wordSelect = words[Math.floor(Math.random() * words.length)];
+            currentWord = new Word(wordSelect.toUpperCase());
             start();
         } else {
-            reset();
+            begin();
         }
     })
 }//close begin
 
 const start = function () {
-    currentWord = new Word(wordSelect.toUpperCase());
+    // currentWord = new Word(wordSelect.toUpperCase());
     [{
         name: 'guess',
         message: 'Guess a letter',
@@ -46,3 +47,5 @@ const start = function () {
         }
     }]
 }//close start
+
+begin();
