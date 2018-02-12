@@ -5,12 +5,13 @@ var inquirer = require("inquirer");
 const Word = require("./word.js");
 
 let words = ["Marty McFly", "Dr. Emmett Brown", "Marvin Berry", "Biff Tannen", "Jennifer",
-    "Great Scott!", "This is heavy", "What are you looking at butthead", "I hate manure!",
+    "Great Scott!", "This is heavy", "What are you looking at butthead?", "I hate manure!",
     "DeLorean", "Gray's Sports Almanac", "Manure" ];
 let guesses = 10;
 let wordSelect;
 let currentWord;
 let correct = [];
+let letterbank = [];
 
 
 const begin = function () {
@@ -57,14 +58,20 @@ const gameplay = function (currentWord, guessed) {
     console.log(`\n${guessed} guessed`);
     currentWord.check(guessed.toUpperCase());
     currentWord.visible(guessed);
-    console.log(currentWord.visible);
+    // console.log(currentWord.visible);
     let unfinished = currentWord.visible();
     console.log(unfinished);
-    if (unfinished.includes(guessed)){
+    if (letterbank.includes(guessed.toUpperCase())) {
+        console.log('Letter already guessed')
+    } else if (unfinished.includes(guessed.toUpperCase())){
         console.log(`\n Correct! \n`);
+        letterbank.push(guessed.toUpperCase());            
     } else {
         console.log(`\n Incorrect! \n`);
+        guesses--;
+        letterbank.push(guessed.toUpperCase());            
     }
+    console.log(`Letterbank: ${letterbank}`)
 
     // currentWord.characters.forEach(i => {
     //     if (guessed === i.)
