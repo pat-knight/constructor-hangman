@@ -33,11 +33,11 @@ const begin = function () {
             wordSelect = words[Math.floor(Math.random() * words.length)];
             start(wordSelect);
         } else {
-            process.stdout.write('\x1B[2J\x1B[0f');            
+            process.stdout.write('\x1B[2J\x1B[0f');
         }
     })
 
-    
+
 } //close begin
 
 const start = function (wordSelect) {
@@ -106,16 +106,16 @@ const checkLetter = function (guessed, wordSelect) {
 
 const win = function (wordSelect) {
     console.log(` \nGame will exit in 5 seconds \n You Win! \nThe correct answer was '${wordSelect}.'`);
-    setTimeout( function () {
+    setTimeout(function () {
         process.exit();
     }, 5000);
-}//close win
+} //close win
 
 const lose = function (wordSelect) {
     console.log(`\nThe correct answer was ${wordSelect}`);
-    setTimeout( function () {
+    setTimeout(function () {
         process.exit();
     }, 5000);
-}// close lose
+} // close lose
 
 begin();
