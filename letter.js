@@ -1,14 +1,6 @@
 function Letter(char) {
     this.char = char;
     this.guessed = false;
-    // this.show = function () {
-    //     if (this.guessed){
-    //         return this.char;
-    //     } else {
-    //         return '_';
-    //     }
-    // }
-    // Letter.charCorrect();
 }
 
 Letter.prototype.compare = function (char) {
